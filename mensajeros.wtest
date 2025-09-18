@@ -3,57 +3,67 @@ import mensajeros.*
 describe "Test de mensajeros primera parte " {
 	
 	test "Morfeo en camion con 1 acoplado pesa 90kg + 500kg "{
+		camion.acoplados(1)
 	    assert.equals(590, morfeo.peso())
-}
+} //ok
 
 	test "Camion con 2 acoplados pesan 1000kg + 90kg"{
 		camion.acoplados(2)
 	    assert.equals(1090, morfeo.peso()) 
-}
+}//ok
 
 	test "monopatin pesa 1kg + "{
         morfeo.transporte(monopatin)
 	    assert.equals(1, monopatin.peso())
-}
+} //ok
 
 	test "Morfeo en monopatin pesa 90kg + 1kg "{
 		morfeo.transporte(monopatin)
 	    assert.equals(91, morfeo.peso() )
-}
+} //ok
 
 	test "Morfeo anda en el Nabucodonosor"{
 	    assert.equals(morfeo.transporte(), camion)
-}
+} //ok
 
 	test "el puente deja pasar un mensajero liviano"{
 	    assert.that(puente.dejarPasar(morfeo))
-    }
+    } //ok Lo deja pasar con un camion sin acoplados
 
     test "el puente no deja pasar un mensajero pesado"{
         camion.acoplados(3)
 	    assert.notThat(puente.dejarPasar(morfeo))
-    }
+    } //ok
 
     test "un paquete estaPago"{
-		paquete.pago(true)
-	    assert.that(paquete.estaPago())
-    }
+		
+		paquete.pagar(true)
+	    //paquete.pago(100) lo comente porque mi metodo para pagar ya tenia otro nombre y lo use antes
+		assert.that(paquete.estaPago())
+    }	//ok
 
     test "un paquete pago con destino a Alsina puede ser entregado por Morfeo en camion liviano"{
-		paquete.pagar()
+		paquete.pagar(true)
 		paquete.destino(puente)
 	    assert.that(paquete.puedeSerEntregadoPor(morfeo))
-    }
+    } //ok
 
     test "un paquete no pago no puede ser entregado por Morfeo"{
 	    assert.notThat(paquete.puedeSerEntregadoPor(morfeo))
-    }
+    }//ok, no llame a pagar aunque morfeo cumple el limite de peso
 
 	test "un paquete pago no puede entregado por Morfeo en camion de 3 acoplados"{
-		paquete.pagar()
+		paquete.pagar(true)
         camion.acoplados(3)
 	    assert.notThat(paquete.puedeSerEntregadoPor(morfeo))
-    }
+    }//ok
+
+
+	test "neo tiene credito pero el paquete no esta pago"{
+		neo.cargarSaldo(100)
+		paquete.destino(matrix)
+		assert.notThat(paquete.puedeSerEntregadoPor(neo))
+	}
 }
 
 
