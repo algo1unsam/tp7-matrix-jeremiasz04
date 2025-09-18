@@ -2,7 +2,71 @@ import mensajeria.*
 import mensajeros.*
 
 
-describe "2 " {}
+describe "2 " {
+
+    test "contratar a neo"{
+        mensajeria.contratar(neo)
+        assert.that(mensajeria.empleados().contains(neo))
+    } //ok
+
+    test "despedir a neo"{
+        mensajeria.contratar(neo)
+        assert.that(mensajeria.empleados().contains(neo))
+        mensajeria.despedir(neo)
+        assert.notThat(mensajeria.empleados().contains(neo))
+    }//ok
+
+    test "despedir a todos"{
+        mensajeria.contratar(neo)
+        mensajeria.contratar(morfeo)
+        assert.that(mensajeria.empleados().contains(neo)) //Pruebo que se haya contratado correctamente
+        mensajeria.despedirATodos()
+        assert.notThat(mensajeria.empleados().contains(neo))
+
+    }//ok
+
+    test "mensajeria es grande"{
+        mensajeria.contratar(neo)
+        mensajeria.contratar(morfeo)
+        assert.that(mensajeria.MensajeriaEsGrande())
+    } //ok
+
+    test "mensajeria no es grande"{
+        mensajeria.contratar(neo)
+        assert.notThat(mensajeria.MensajeriaEsGrande())
+    }//ok
+
+    test "primer empleado no puede entregar el paquete" {
+        mensajeria.contratar(neo)
+        mensajeria.contratar(morfeo)
+        paquete.destino(puente) //Ya sabemos que neo puede ir por el peso
+        paquete.puedeSerEntregadoPor(neo)
+        assert.notThat(paquete.puedeSerEntregadoPor(mensajeria.empleados().get(0))  )
+    } //ok
+
+    test "primer empleado puede entregar el paquete" {
+        mensajeria.contratar(neo)
+        mensajeria.contratar(morfeo)
+        paquete.pagar(500)
+        paquete.destino(puente) //Ya sabemos que neo puede ir por el peso
+        paquete.puedeSerEntregadoPor(neo)
+        assert.that(paquete.puedeSerEntregadoPor(mensajeria.empleados().get(0))  )
+    }//ok
+
+    test "ultimo empleado"{
+        mensajeria.contratar(neo)
+        mensajeria.contratar(morfeo)
+        assert.equals(morfeo, mensajeria.ultimoEmpleado())
+    }///ok
+
+
+    test "peso ultimo empleado"{
+        mensajeria.contratar(neo)
+        mensajeria.contratar(morfeo)
+        assert.equals(90, mensajeria.pesoUltimoEmpleado() )
+    }
+
+}
 
 
 describe "3 " {}

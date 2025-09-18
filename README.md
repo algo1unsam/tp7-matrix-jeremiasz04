@@ -1,4 +1,4 @@
-### Ejercicio incremental: Polimorfismo - Colecciones - Colecciones con bloques 
+![alt text](image.png)### Ejercicio incremental: Polimorfismo - Colecciones - Colecciones con bloques 
 
 ![](matrix.jpg)
 
@@ -22,7 +22,7 @@ Un paquete puede entregarse cuando:
 
 **Mensajeros posibles:**
 
-- **Morfeo:** viaja en monopatín o en el Nabucodonosor.  
+  - **Morfeo:** viaja en monopatín o en el Nabucodonosor.  
   - Si viaja en monopatín, el peso que cuenta es el suyo propio más 1 kg, que es lo que pesa el monopatín.  
   - Si viaja en el Nabucodonosor, como se llama su camión con acoplado. El peso será el propio más el del camión, a razón de media tonelada por cada acoplado.  
   - Morfeo no tiene un mango, gracias que tiene cubiertas en el monopatín, y no puede llamar a nadie.
